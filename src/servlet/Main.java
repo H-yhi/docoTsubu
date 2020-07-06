@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Mutter;
-import model.User;
 import model.PostMutterLogic;
+import model.User;
 
 /**
  * Servlet implementation class Main
@@ -74,6 +74,9 @@ public class Main extends HttpServlet {
 
 			// アプケーションスコープに呟きを保存
 			application.setAttribute("mutterList", mutterList);
+		} else {
+			// エラーメッセージをリクエストスコープに保存
+			request.setAttribute("errorMsg", "呟きが入力されていません。");
 		}
 
 		// メイン画面にフォワード
