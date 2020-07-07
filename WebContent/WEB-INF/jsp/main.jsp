@@ -5,7 +5,7 @@
 // セッションスコープに保存されたユーザー情報を取得
 User loginUser = (User) session.getAttribute("loginUser");
 // アプリケーションスコープに保存されたユーザー情報を取得
-List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
+List<Mutter> mutterList = (List<Mutter>) request.getAttribute("mutterList");
 // リクエストスコープに保存されたエラーメッセージを取得
 String errorMsg = (String) request.getAttribute("errorMsg");
 %>
@@ -29,8 +29,12 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 <% if(errorMsg != null) { %>
 	<p><%= errorMsg %></p>
 <% } %>
-<% for(Mutter mutter : mutterList) { %>
+<% if(mutterList != null) { %>
+	<% for(Mutter mutter : mutterList) { %>
 	<p><%= mutter.getUserName() %>：<%= mutter.getText() %></p>
+	<% } %>
+<% } else { %>
+	<p>投稿なし</p>
 <% } %>
 </body>
 </html>
